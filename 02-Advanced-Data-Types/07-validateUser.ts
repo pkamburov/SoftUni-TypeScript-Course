@@ -6,26 +6,31 @@ type User = {
   email?: string;
 };
 
-function validateUser(user: User) {
+function validateUser(user: object): user is User {
   const isValidId =
-    (typeof user.id === "number" && user.id > 100) ||
-    (typeof user.id === "string" && user.id.length === 14);
+    "id" in user &&
+    ((typeof user.id === "number" && user.id > 100) ||
+      (typeof user.id === "string" && user.id.length === 14));
 
   const isValidUsername =
+    "username" in user &&
     typeof user.username === "string" &&
     user.username.length >= 5 &&
     user.username.length <= 10;
 
   const isValidHash =
-    (typeof user.passwordHash === "string" &&
+    "passwordHash" in user &&
+    ((typeof user.passwordHash === "string" &&
       user.passwordHash.length === 20) ||
-    (Array.isArray(user.passwordHash) &&
-      user.passwordHash.length === 4 &&
-      user.passwordHash.every(
-        (item) => typeof item === "string" && item.length === 8
-      ));
+      (Array.isArray(user.passwordHash) &&
+        user.passwordHash.length === 4 &&
+        user.passwordHash.every(
+          (item) => typeof item === "string" && item.length === 8
+        )));
 
-  const isValidStatus = user.status === "Locked" || user.status === "Unlocked";
+  const isValidStatus =
+    "status" in user &&
+    (user.status === "Locked" || user.status === "Unlocked");
   const isValid = isValidId && isValidUsername && isValidHash && isValidStatus;
 
   console.log(isValid);
