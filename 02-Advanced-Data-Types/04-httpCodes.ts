@@ -1,4 +1,4 @@
-// Solution 1 - siple Solution
+// Solution 1 - simple Solution
 
 // function httpCodes(response: {
 //   code: number;
@@ -32,9 +32,7 @@ function httpCodes(response: TextCodes | SliceTextCodes) {
     case 400:
     case 404:
     case 500:
-      console.log(
-        response.text.slice(0, response.printChars)
-      );
+      console.log(response.text.slice(0, response.printChars));
       break;
   }
 }
