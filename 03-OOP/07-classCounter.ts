@@ -1,5 +1,5 @@
 class Counter {
-  static count: number = 0;
+  private static count: number = 0;
 
   static increment(): void {
     Counter.count++;
@@ -14,5 +14,5 @@ Counter.increment();
 Counter.increment();
 console.log(Counter.getCount());
 
-Counter.count = 10;
-console.log(Counter.getCount());
+// Counter.count = 10; //Error: only accessible within Counter
+// console.log(Counter.getCount());
