@@ -13,15 +13,20 @@ class CountedSet<T> implements CountableSet<T> {
   }
 
   add(item: T): void {
+    // Solution
     const count = this.items.get(item);
     if (count === undefined) {
       this.items.set(item, 1);
     } else {
       this.items.set(item, count + 1);
     }
+
+    // Another solution
+    // this.items.set(item, (this.items.get(item) || 0) + 1);
   }
 
   remove(item: T): void {
+    // Solution
     const count = this.items.get(item);
 
     if (count === undefined || count === 0) {
@@ -29,6 +34,11 @@ class CountedSet<T> implements CountableSet<T> {
     } else if (count > 0) {
       this.items.set(item, count - 1);
     }
+
+    // Another Solution
+    // if (this.items.has(item) && this.items.get(item)! > 0) {
+    //   this.items.set(item, this.items.get(item)! - 1);
+    // }
   }
 
   contains(item: T): boolean {
@@ -48,6 +58,8 @@ class CountedSet<T> implements CountableSet<T> {
     } else {
       return 0;
     }
+
+    // return this.items.get(item) || 0;
   }
 }
 
