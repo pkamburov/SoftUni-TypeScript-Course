@@ -48,7 +48,7 @@ class Logger<T extends LoggingLevel, V extends LoggingFormat>
   }
 }
 
-// Input
+//// Working Input
 let logger = new Logger<LoggingLevel, LoggingFormat>(LoggingFormat.Standard);
 logger.log(LoggingLevel.Info, "This is an info message.");
 logger.log(LoggingLevel.Info, "Another message.");
@@ -60,3 +60,19 @@ console.log("-----------");
 console.log(
   [...logger.cachedLogs.entries()].map((x) => x[1].join("\n")).join("\n")
 );
+
+//// Another Input
+// let logger = new Logger<LoggingLevel, LoggingFormat>(LoggingFormat.Minimal);
+// logger.log(LoggingLevel.Info, "Just a simple message.");
+// logger.log(LoggingLevel.Error, "A Problem happened.");
+// console.log("-----------");
+// console.log(logger.getFormat());
+// console.log(
+//   [...logger.cachedLogs.entries()].map((x) => x[1].join("\n")).join("\n")
+// );
+
+//// TS Errors Input
+// let logger = new Logger<LoggingLevel, LoggingFormat>("%text"); //TS Error
+// let wronglogger = new Logger<string, LoggingLevel>(); //TS Error
+// logger.log("%s", "Running the debugger."); //TS Error
+// logger.log({format: "Test %s"}, "Running the debugger."); //TS Error
